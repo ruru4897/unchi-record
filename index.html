@@ -98,30 +98,75 @@
   </div>
 
   <script>
+
+    // 保存されている記録を読み込む
+    let records = JSON.parse(localStorage.getItem("unchiRecords")) || [];
+
+    // 画面に記録を表示する
+    function displayRecords() {
+
+      const recordsArea = document.getElementById("records");
+
+      recordsArea.innerHTML = "";
+
+      records.forEach(function(item) {
+
+        const record = document.createElement("div");
+
+        record.className = "record";
+
+        record.innerHTML = `
+          <strong>${item.date} ${item.time}</strong><br>
+          状態：${item.condition}<br>
+          メモ：${item.memo || "なし"}
+        `;
+
+        recordsArea.appendChild(record);
+
+      });
+
+    }
+
+    // 記録する
     function record() {
+
       const date = document.getElementById("date").value;
       const time = document.getElementById("time").value;
       const condition = document.getElementById("condition").value;
       const memo = document.getElementById("memo").value;
 
       if (!date || !time || !condition) {
+
         alert("日にち・時間・状態を入力してね");
+
         return;
       }
 
-      const record = document.createElement("div");
-      record.className = "record";
+      const newRecord = {
 
-      record.innerHTML = `
-        <strong>${date} ${time}</strong><br>
-        状態：${condition}<br>
-        メモ：${memo || "なし"}
-      `;
+        date: date,
+        time: time,
+        condition: condition,
+        memo: memo
 
-      document.getElementById("records").appendChild(record);
+      };
+
+      // 記録を追加
+      records.push(newRecord);
+
+      // ブラウザに保存
+      localStorage.setItem("unchiRecords", JSON.stringify(records));
+
+      // 画面を更新
+      displayRecords();
 
       alert("記録しました！");
+
     }
+
+    // ページを開いたときに保存済みの記録を表示
+    displayRecords();
+
   </script>
 
 </body>
