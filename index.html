@@ -64,10 +64,21 @@
       border-radius: 10px;
     }
 
+    .edit-button,
+    .delete-button {
+      width: auto;
+      padding: 8px 12px;
+      margin-top: 10px;
+      margin-right: 5px;
+      font-size: 14px;
+    }
+
+    .edit-button {
+      background: #777;
+    }
+
     .delete-button {
       background: #999;
-      margin-top: 10px;
-      font-size: 14px;
     }
   </style>
 </head>
@@ -108,6 +119,10 @@
     // 保存されている記録を読み込む
     let records = JSON.parse(localStorage.getItem("unchiRecords")) || [];
 
+    // 編集中の記録番号
+    let editingIndex = -1;
+
+
     // 記録を画面に表示
     function displayRecords() {
 
@@ -125,6 +140,13 @@
           <strong>${item.date} ${item.time}</strong><br>
           状態：${item.condition}<br>
           メモ：${item.memo || "なし"}
+
+          <br>
+
+          <button class="edit-button" onclick="editRecord(${index})">
+            ✏️ 編集
+          </button>
+
           <button class="delete-button" onclick="deleteRecord(${index})">
             🗑️ 削除
           </button>
@@ -136,6 +158,7 @@
 
     }
 
+
     // 新しい記録を追加
     function record() {
 
@@ -144,6 +167,7 @@
       const condition = document.getElementById("condition").value;
       const memo = document.getElementById("memo").value;
 
+
       if (!date || !time || !condition) {
 
         alert("日にち・時間・状態を入力してね");
@@ -151,14 +175,41 @@
         return;
       }
 
-      const newRecord = {
-        date: date,
-        time: time,
-        condition: condition,
-        memo: memo
-      };
 
-      records.push(newRecord);
+      // 編集中の場合
+      if (editingIndex !== -1) {
+
+        records[editingIndex] = {
+          date: date,
+          time: time,
+          condition: condition,
+          memo: memo
+        };
+
+        editingIndex = -1;
+
+        document.querySelector("button[onclick='record()']").textContent =
+          "記録する";
+
+        alert("記録を変更しました！");
+
+      }
+
+      // 新しい記録の場合
+      else {
+
+        const newRecord = {
+          date: date,
+          time: time,
+          condition: condition,
+          memo: memo
+        };
+
+        records.push(newRecord);
+
+        alert("記録しました！");
+      }
+
 
       // 保存
       localStorage.setItem(
@@ -166,12 +217,39 @@
         JSON.stringify(records)
       );
 
+
+      // 画面を更新
       displayRecords();
 
-      alert("記録しました！");
+
+      // 入力欄を空にする
+      document.getElementById("date").value = "";
+      document.getElementById("time").value = "";
+      document.getElementById("condition").value = "";
+      document.getElementById("memo").value = "";
+
     }
 
-    // 記録を削除
+
+    // 編集する
+    function editRecord(index) {
+
+      const item = records[index];
+
+      document.getElementById("date").value = item.date;
+      document.getElementById("time").value = item.time;
+      document.getElementById("condition").value = item.condition;
+      document.getElementById("memo").value = item.memo;
+
+      editingIndex = index;
+
+      document.querySelector("button[onclick='record()']").textContent =
+        "変更を保存";
+
+    }
+
+
+    // 削除する
     function deleteRecord(index) {
 
       const answer = confirm("この記録を削除しますか？");
@@ -180,20 +258,19 @@
         return;
       }
 
-      // 指定された記録を削除
       records.splice(index, 1);
 
-      // 削除後のデータを保存
       localStorage.setItem(
         "unchiRecords",
         JSON.stringify(records)
       );
 
-      // 画面を更新
       displayRecords();
+
     }
 
-    // ページを開いたときに保存済み記録を表示
+
+    // ページを開いたときに記録を表示
     displayRecords();
 
   </script>
