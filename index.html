@@ -3,420 +3,705 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>うんち記録</title>
+
+  <title>💩 うんち記録</title>
 
   <style>
-  * {
-    box-sizing: border-box;
-  }
 
-  body {
-    font-family: "Hiragino Kaku Gothic ProN",
-                 "Yu Gothic",
-                 sans-serif;
-    background: #f8eee3;
-    margin: 0;
-    padding: 15px;
-    color: #59463a;
-  }
+    * {
+      box-sizing: border-box;
+    }
 
-  .container {
-    max-width: 600px;
-    margin: auto;
-    background: #fffaf5;
-    padding: 20px;
-    border-radius: 24px;
-    box-shadow: 0 5px 20px rgba(120, 80, 50, 0.08);
-  }
-
-  h1 {
-    text-align: center;
-    color: #795548;
-    font-size: 28px;
-    margin: 5px 0 25px;
-  }
-
-  h2 {
-    font-size: 19px;
-    color: #795548;
-    margin-top: 30px;
-    margin-bottom: 12px;
-    padding: 10px 14px;
-    background: #f3dfcf;
-    border-radius: 12px;
-  }
-
-  label {
-    display: block;
-    margin-top: 15px;
-    margin-bottom: 6px;
-    font-weight: bold;
-    color: #76584a;
-  }
-
-  input,
-  select,
-  textarea {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    border: 2px solid #ead8ca;
-    border-radius: 12px;
-    background: #fff;
-    color: #59463a;
-    outline: none;
-  }
-
-  input:focus,
-  select:focus,
-  textarea:focus {
-    border-color: #d9a7a7;
-  }
-
-  textarea {
-    height: 80px;
-    resize: vertical;
-  }
-
-  .main-button {
-    width: 100%;
-    margin-top: 20px;
-    padding: 14px;
-    font-size: 18px;
-    font-weight: bold;
-    border: none;
-    border-radius: 14px;
-    background: #b98270;
-    color: white;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(120, 80, 50, 0.12);
-  }
-
-  .main-button:active {
-    transform: scale(0.98);
-  }
-
-  .cancel-button {
-    background: #b5a39a;
-  }
-
-  .stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-
-  .stat-box {
-    padding: 14px 8px;
-    border-radius: 15px;
-    text-align: center;
-    background: #f8e5d8;
-    color: #76584a;
-  }
-
-  .stat-box:nth-child(2) {
-    background: #f5dfe5;
-  }
-
-  .stat-box:nth-child(3) {
-    background: #e5e8d7;
-  }
-
-  .stat-box:nth-child(4) {
-    background: #e3e1ee;
-  }
-
-  .stat-number {
-    font-size: 23px;
-    font-weight: bold;
-    margin: 3px 0;
-  }
-
-  .record {
-    margin-top: 14px;
-    padding: 16px;
-    background: #fff;
-    border: 2px solid #ead8ca;
-    border-radius: 16px;
-    box-shadow: 0 3px 10px rgba(120, 80, 50, 0.06);
-    line-height: 1.8;
-  }
-
-  .record strong {
-    color: #795548;
-    font-size: 16px;
-  }
-
-  .record-buttons {
-    display: flex;
-    gap: 8px;
-    margin-top: 10px;
-  }
-
-  .record-buttons button {
-    flex: 1;
-    padding: 9px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 14px;
-  }
-
-  .edit-button {
-    background: #d8b5a8;
-    color: white;
-  }
-
-  .delete-button {
-    background: #c4aaa0;
-    color: white;
-  }
-
-  .calendar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-
-  .calendar-header button {
-    border: none;
-    background: #b98270;
-    color: white;
-    border-radius: 10px;
-    padding: 8px 13px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-
-  .calendar-title {
-    font-weight: bold;
-    font-size: 18px;
-    color: #795548;
-  }
-
-  .calendar {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 4px;
-  }
-
-  .weekday {
-    text-align: center;
-    font-weight: bold;
-    padding: 5px 0;
-    font-size: 13px;
-    color: #8b6f61;
-  }
-
-  .day {
-    min-height: 58px;
-    border: 1px solid #eaded5;
-    background: #fff;
-    border-radius: 9px;
-    padding: 5px;
-    text-align: center;
-    font-size: 13px;
-  }
-
-  .day.has-record {
-    background: #f7e5d9;
-    border-color: #e4c4b5;
-  }
-
-  .poop {
-    font-size: 17px;
-    display: block;
-    margin-top: 3px;
-  }
-
-  .today {
-    border: 2px solid #c48c78;
-    background: #fff4ed;
-  }
-
-  @media (max-width: 500px) {
     body {
-      padding: 7px;
+      font-family:
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        sans-serif;
+
+      background: #f8eee3;
+      color: #59463a;
+
+      margin: 0;
+      padding: 15px;
     }
 
     .container {
-      padding: 15px;
-      border-radius: 20px;
+      max-width: 600px;
+      margin: auto;
+
+      background: #fffaf5;
+
+      padding: 20px;
+
+      border-radius: 24px;
+
+      box-shadow:
+        0 5px 20px rgba(120, 80, 50, 0.10);
     }
+
+    /* タイトル */
 
     h1 {
-      font-size: 25px;
+      text-align: center;
+
+      color: #795548;
+
+      font-size: 28px;
+
+      margin: 5px 0 25px;
     }
+
+
+    /* 見出し */
 
     h2 {
-      font-size: 18px;
+      font-size: 19px;
+
+      color: #795548;
+
+      margin-top: 30px;
+      margin-bottom: 12px;
+
+      padding: 10px 14px;
+
+      background: #f3dfcf;
+
+      border-radius: 12px;
     }
 
-    .day {
-      min-height: 52px;
-      font-size: 12px;
-    }
 
-    .poop {
-      font-size: 16px;
+    /* 入力 */
+
+    label {
+      display: block;
+
+      margin-top: 15px;
+      margin-bottom: 6px;
+
+      font-weight: bold;
+
+      color: #76584a;
     }
 
     input,
     select,
     textarea {
+
+      width: 100%;
+
+      padding: 12px;
+
+      font-size: 16px;
+
+      border: 2px solid #ead8ca;
+
+      border-radius: 12px;
+
+      background: #ffffff;
+
+      color: #59463a;
+
+      outline: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+
+      border-color: #d9a7a7;
+    }
+
+    textarea {
+
+      height: 80px;
+
+      resize: vertical;
+    }
+
+
+    /* メインボタン */
+
+    .main-button {
+
+      width: 100%;
+
+      margin-top: 20px;
+
+      padding: 14px;
+
+      font-size: 18px;
+
+      font-weight: bold;
+
+      border: none;
+
+      border-radius: 14px;
+
+      background: #b98270;
+
+      color: white;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 4px 8px rgba(120, 80, 50, 0.12);
+    }
+
+    .main-button:active {
+
+      transform: scale(0.98);
+    }
+
+    .cancel-button {
+
+      background: #b5a39a;
+    }
+
+
+    /* 集計 */
+
+    .stats {
+
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 10px;
+    }
+
+    .stat-box {
+
+      padding: 14px 8px;
+
+      border-radius: 15px;
+
+      text-align: center;
+
+      background: #f8e5d8;
+
+      color: #76584a;
+    }
+
+    .stat-box:nth-child(2) {
+
+      background: #f5dfe5;
+    }
+
+    .stat-box:nth-child(3) {
+
+      background: #e5e8d7;
+    }
+
+    .stat-box:nth-child(4) {
+
+      background: #e3e1ee;
+    }
+
+    .stat-number {
+
+      font-size: 23px;
+
+      font-weight: bold;
+
+      margin: 3px 0;
+    }
+
+
+    /* 記録カード */
+
+    .record {
+
+      margin-top: 14px;
+
+      padding: 16px;
+
+      background: #ffffff;
+
+      border: 2px solid #ead8ca;
+
+      border-radius: 16px;
+
+      box-shadow:
+        0 3px 10px rgba(120, 80, 50, 0.06);
+
+      line-height: 1.8;
+    }
+
+    .record strong {
+
+      color: #795548;
+
       font-size: 16px;
     }
 
-    .main-button {
-      padding: 15px;
+
+    /* 編集・削除ボタン */
+
+    .record-buttons {
+
+      display: flex;
+
+      gap: 8px;
+
+      margin-top: 10px;
     }
-  }
-</style>
+
+    .record-buttons button {
+
+      flex: 1;
+
+      padding: 9px;
+
+      border: none;
+
+      border-radius: 10px;
+
+      cursor: pointer;
+
+      font-size: 14px;
+    }
+
+    .edit-button {
+
+      background: #d8b5a8;
+
+      color: white;
+    }
+
+    .delete-button {
+
+      background: #c4aaa0;
+
+      color: white;
+    }
+
+
+    /* カレンダー */
+
+    .calendar-header {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      margin-bottom: 10px;
+    }
+
+    .calendar-header button {
+
+      border: none;
+
+      background: #b98270;
+
+      color: white;
+
+      border-radius: 10px;
+
+      padding: 8px 13px;
+
+      font-size: 16px;
+
+      cursor: pointer;
+    }
+
+    .calendar-title {
+
+      font-weight: bold;
+
+      font-size: 18px;
+
+      color: #795548;
+    }
+
+    .calendar {
+
+      display: grid;
+
+      grid-template-columns: repeat(7, 1fr);
+
+      gap: 4px;
+    }
+
+    .weekday {
+
+      text-align: center;
+
+      font-weight: bold;
+
+      padding: 5px 0;
+
+      font-size: 13px;
+
+      color: #8b6f61;
+    }
+
+    .day {
+
+      min-height: 58px;
+
+      border: 1px solid #eaded5;
+
+      background: #ffffff;
+
+      border-radius: 9px;
+
+      padding: 5px;
+
+      text-align: center;
+
+      font-size: 13px;
+    }
+
+    .day.has-record {
+
+      background: #f7e5d9;
+
+      border-color: #e4c4b5;
+    }
+
+    .poop {
+
+      font-size: 17px;
+
+      display: block;
+
+      margin-top: 3px;
+    }
+
+    .today {
+
+      border: 2px solid #c48c78;
+
+      background: #fff4ed;
+    }
+
+
+    /* スマホ */
+
+    @media (max-width: 500px) {
+
+      body {
+
+        padding: 7px;
+      }
+
+      .container {
+
+        padding: 15px;
+
+        border-radius: 20px;
+      }
+
+      h1 {
+
+        font-size: 25px;
+      }
+
+      h2 {
+
+        font-size: 18px;
+      }
+
+      .day {
+
+        min-height: 52px;
+
+        font-size: 12px;
+      }
+
+      .poop {
+
+        font-size: 16px;
+      }
+
+      input,
+      select,
+      textarea {
+
+        font-size: 16px;
+      }
+
+      .main-button {
+
+        padding: 15px;
+      }
+    }
+
+  </style>
+
 </head>
+
 
 <body>
 
+
 <div class="container">
+
 
   <h1>💩 うんち記録</h1>
 
+
   <!-- 入力 -->
+
   <label>日にち</label>
+
   <input type="date" id="date">
 
+
   <label>時間</label>
+
   <input type="time" id="time">
 
+
   <label>状態</label>
+
   <select id="condition">
+
     <option value="">選んでね</option>
+
     <option>硬い</option>
+
     <option>普通</option>
+
     <option>やや柔らかい</option>
+
     <option>柔らかい</option>
+
     <option>下痢</option>
+
   </select>
+
 
   <label>便の量</label>
+
   <select id="amount">
+
     <option value="">選んでね</option>
+
     <option>少ない</option>
+
     <option>普通</option>
+
     <option>多い</option>
+
   </select>
 
-  <label>メモ</label>
-  <textarea id="memo" placeholder="色・お腹の調子など"></textarea>
 
-  <button class="main-button" id="saveButton" onclick="record()">
+  <label>メモ</label>
+
+  <textarea
+    id="memo"
+    placeholder="色・お腹の調子など"></textarea>
+
+
+  <button
+    class="main-button"
+    id="saveButton"
+    onclick="record()">
+
     記録する
+
   </button>
+
 
   <button
     class="main-button cancel-button"
     id="cancelButton"
     onclick="cancelEdit()"
     style="display:none;">
+
     編集をやめる
+
   </button>
 
 
-  <!-- 今日・期間の集計 -->
+  <!-- 集計 -->
+
   <h2>📊 集計</h2>
+
 
   <div class="stats">
 
+
     <div class="stat-box">
+
       今日
-      <div class="stat-number" id="todayCount">0</div>
+
+      <div
+        class="stat-number"
+        id="todayCount">
+
+        0
+
+      </div>
+
       回
+
     </div>
 
+
     <div class="stat-box">
+
       今週
-      <div class="stat-number" id="weekCount">0</div>
+
+      <div
+        class="stat-number"
+        id="weekCount">
+
+        0
+
+      </div>
+
       回
+
     </div>
 
+
     <div class="stat-box">
+
       今月
-      <div class="stat-number" id="monthCount">0</div>
+
+      <div
+        class="stat-number"
+        id="monthCount">
+
+        0
+
+      </div>
+
       回
+
     </div>
 
+
     <div class="stat-box">
+
       前回から
-      <div class="stat-number" id="interval">---</div>
+
+      <div
+        class="stat-number"
+        id="interval">
+
+        ---
+
+      </div>
+
     </div>
+
 
   </div>
 
 
   <!-- カレンダー -->
+
   <h2>📅 カレンダー</h2>
 
+
   <div class="calendar-header">
-    <button onclick="changeMonth(-1)">←</button>
 
-    <div class="calendar-title" id="calendarTitle"></div>
+    <button onclick="changeMonth(-1)">
+      ←
+    </button>
 
-    <button onclick="changeMonth(1)">→</button>
+
+    <div
+      class="calendar-title"
+      id="calendarTitle">
+    </div>
+
+
+    <button onclick="changeMonth(1)">
+      →
+    </button>
+
   </div>
 
-  <div class="calendar" id="calendar"></div>
+
+  <div
+    class="calendar"
+    id="calendar">
+  </div>
 
 
   <!-- 記録一覧 -->
+
   <h2>📋 記録一覧</h2>
 
+
   <div id="records"></div>
+
 
 </div>
 
 
 <script>
 
-  // 保存されている記録を読み込む
-  let records =
-    JSON.parse(localStorage.getItem("unchiRecords")) || [];
 
-  // 編集中の記録番号
+  /* 保存されている記録 */
+
+  let records =
+    JSON.parse(
+      localStorage.getItem("unchiRecords")
+    ) || [];
+
+
+  /* 編集中の番号 */
+
   let editingIndex = -1;
 
-  // カレンダーで表示している月
+
+  /* カレンダー */
+
   let calendarDate = new Date();
 
 
-  // 今日の日付を YYYY-MM-DD にする
+  /* 今日 */
+
   function getToday() {
 
     const now = new Date();
 
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, "0");
-    const day = String(now.getDate()).padStart(2, "0");
+    const year =
+      now.getFullYear();
+
+    const month =
+      String(
+        now.getMonth() + 1
+      ).padStart(2, "0");
+
+    const day =
+      String(
+        now.getDate()
+      ).padStart(2, "0");
 
     return `${year}-${month}-${day}`;
   }
 
 
-  // 現在時刻を HH:MM にする
+  /* 現在時刻 */
+
   function getCurrentTime() {
 
     const now = new Date();
 
     const hour =
-      String(now.getHours()).padStart(2, "0");
+      String(
+        now.getHours()
+      ).padStart(2, "0");
 
     const minute =
-      String(now.getMinutes()).padStart(2, "0");
+      String(
+        now.getMinutes()
+      ).padStart(2, "0");
 
     return `${hour}:${minute}`;
   }
 
 
-  // 新しい記録を保存
+  /* 記録 */
+
   function record() {
 
     const date =
@@ -435,9 +720,16 @@
       document.getElementById("memo").value;
 
 
-    if (!date || !time || !condition || !amount) {
+    if (
+      !date ||
+      !time ||
+      !condition ||
+      !amount
+    ) {
 
-      alert("日にち・時間・状態・便の量を入力してね");
+      alert(
+        "日にち・時間・状態・便の量を入力してね"
+      );
 
       return;
     }
@@ -446,60 +738,97 @@
     const newRecord = {
 
       date: date,
+
       time: time,
+
       condition: condition,
+
       amount: amount,
+
       memo: memo
 
     };
 
 
-    // 編集中
+    /* 編集 */
+
     if (editingIndex !== -1) {
 
-      records[editingIndex] = newRecord;
+      records[editingIndex] =
+        newRecord;
+
 
       editingIndex = -1;
 
-      document.getElementById("saveButton").textContent =
+
+      document.getElementById(
+        "saveButton"
+      ).textContent =
         "記録する";
 
-      document.getElementById("cancelButton").style.display =
+
+      document.getElementById(
+        "cancelButton"
+      ).style.display =
         "none";
 
-      alert("記録を変更しました！");
+
+      alert(
+        "記録を変更しました！"
+      );
 
     }
 
-    // 新規記録
+
+    /* 新規 */
+
     else {
 
-      records.push(newRecord);
+      records.push(
+        newRecord
+      );
 
-      alert("記録しました！");
+
+      alert(
+        "記録しました！"
+      );
+
     }
 
 
-    // 新しい順に並べる
-    records.sort(function(a, b) {
+    /* 新しい順 */
 
-      const dateA = new Date(
-        a.date + "T" + a.time
-      );
+    records.sort(
+      function(a, b) {
 
-      const dateB = new Date(
-        b.date + "T" + b.time
-      );
+        const dateA =
+          new Date(
+            a.date +
+            "T" +
+            a.time
+          );
 
-      return dateB - dateA;
+        const dateB =
+          new Date(
+            b.date +
+            "T" +
+            b.time
+          );
 
-    });
+        return dateB - dateA;
+
+      }
+    );
 
 
-    // 保存
+    /* 保存 */
+
     localStorage.setItem(
+
       "unchiRecords",
+
       JSON.stringify(records)
+
     );
 
 
@@ -514,140 +843,207 @@
   }
 
 
-  // 記録を画面に表示
+  /* 表示 */
+
   function displayRecords() {
 
     const area =
-      document.getElementById("records");
+      document.getElementById(
+        "records"
+      );
+
 
     area.innerHTML = "";
 
 
-    records.forEach(function(item, index) {
-
-      const record =
-        document.createElement("div");
-
-      record.className = "record";
+    records.forEach(
+      function(item, index) {
 
 
-      record.innerHTML = `
-
-        <strong>
-          ${item.date} ${item.time}
-        </strong>
-
-        <br>
-
-        状態：${item.condition}
-
-        <br>
-
-        量：${item.amount || "未入力"}
-
-        <br>
-
-        メモ：${item.memo || "なし"}
-
-        <div class="record-buttons">
-
-          <button
-            class="edit-button"
-            onclick="editRecord(${index})">
-            ✏️ 編集
-          </button>
-
-          <button
-            class="delete-button"
-            onclick="deleteRecord(${index})">
-            🗑️ 削除
-          </button>
-
-        </div>
-
-      `;
+        const record =
+          document.createElement(
+            "div"
+          );
 
 
-      area.appendChild(record);
+        record.className =
+          "record";
 
-    });
+
+        record.innerHTML = `
+
+          <strong>
+            ${item.date}
+            ${item.time}
+          </strong>
+
+          <br>
+
+          状態：
+          ${item.condition}
+
+          <br>
+
+          量：
+          ${item.amount || "未入力"}
+
+          <br>
+
+          メモ：
+          ${item.memo || "なし"}
+
+          <div class="record-buttons">
+
+            <button
+              class="edit-button"
+              onclick="editRecord(${index})">
+
+              ✏️ 編集
+
+            </button>
+
+            <button
+              class="delete-button"
+              onclick="deleteRecord(${index})">
+
+              🗑️ 削除
+
+            </button>
+
+          </div>
+
+        `;
+
+
+        area.appendChild(
+          record
+        );
+
+      }
+    );
 
   }
 
 
-  // 編集
+  /* 編集 */
+
   function editRecord(index) {
 
-    const item = records[index];
+    const item =
+      records[index];
 
 
-    document.getElementById("date").value =
+    document.getElementById(
+      "date"
+    ).value =
       item.date;
 
-    document.getElementById("time").value =
+
+    document.getElementById(
+      "time"
+    ).value =
       item.time;
 
-    document.getElementById("condition").value =
+
+    document.getElementById(
+      "condition"
+    ).value =
       item.condition;
 
-    document.getElementById("amount").value =
+
+    document.getElementById(
+      "amount"
+    ).value =
       item.amount || "";
 
-    document.getElementById("memo").value =
+
+    document.getElementById(
+      "memo"
+    ).value =
       item.memo || "";
 
 
-    editingIndex = index;
+    editingIndex =
+      index;
 
 
-    document.getElementById("saveButton").textContent =
+    document.getElementById(
+      "saveButton"
+    ).textContent =
       "変更を保存";
 
-    document.getElementById("cancelButton").style.display =
+
+    document.getElementById(
+      "cancelButton"
+    ).style.display =
       "block";
 
 
     window.scrollTo({
+
       top: 0,
+
       behavior: "smooth"
+
     });
 
   }
 
 
-  // 編集をキャンセル
+  /* 編集キャンセル */
+
   function cancelEdit() {
 
-    editingIndex = -1;
+    editingIndex =
+      -1;
+
 
     clearForm();
 
-    document.getElementById("saveButton").textContent =
+
+    document.getElementById(
+      "saveButton"
+    ).textContent =
       "記録する";
 
-    document.getElementById("cancelButton").style.display =
+
+    document.getElementById(
+      "cancelButton"
+    ).style.display =
       "none";
 
   }
 
 
-  // 削除
+  /* 削除 */
+
   function deleteRecord(index) {
 
     const answer =
-      confirm("この記録を削除しますか？");
+      confirm(
+        "この記録を削除しますか？"
+      );
+
 
     if (!answer) {
+
       return;
+
     }
 
 
-    records.splice(index, 1);
+    records.splice(
+      index,
+      1
+    );
 
 
     localStorage.setItem(
+
       "unchiRecords",
+
       JSON.stringify(records)
+
     );
 
 
@@ -660,105 +1056,160 @@
   }
 
 
-  // 入力欄を空にする
+  /* 入力欄 */
+
   function clearForm() {
 
-    document.getElementById("date").value =
+    document.getElementById(
+      "date"
+    ).value =
       getToday();
 
-    document.getElementById("time").value =
+
+    document.getElementById(
+      "time"
+    ).value =
       getCurrentTime();
 
-    document.getElementById("condition").value =
+
+    document.getElementById(
+      "condition"
+    ).value =
       "";
 
-    document.getElementById("amount").value =
+
+    document.getElementById(
+      "amount"
+    ).value =
       "";
 
-    document.getElementById("memo").value =
+
+    document.getElementById(
+      "memo"
+    ).value =
       "";
 
   }
 
 
-  // 集計
+  /* 集計 */
+
   function updateStats() {
 
     const today =
       getToday();
 
 
-    // 今日
     const todayRecords =
-      records.filter(function(item) {
+      records.filter(
+        function(item) {
 
-        return item.date === today;
+          return item.date === today;
 
-      });
+        }
+      );
 
 
-    document.getElementById("todayCount").textContent =
+    document.getElementById(
+      "todayCount"
+    ).textContent =
       todayRecords.length;
 
 
-    // 今週
-    const now = new Date();
+    const now =
+      new Date();
+
 
     const day =
       now.getDay();
 
+
     const startOfWeek =
       new Date(now);
+
 
     startOfWeek.setDate(
       now.getDate() - day
     );
 
-    startOfWeek.setHours(0, 0, 0, 0);
+
+    startOfWeek.setHours(
+      0,
+      0,
+      0,
+      0
+    );
 
 
     const weekRecords =
-      records.filter(function(item) {
+      records.filter(
+        function(item) {
 
-        const d =
-          new Date(item.date + "T" + item.time);
+          const d =
+            new Date(
+              item.date +
+              "T" +
+              item.time
+            );
 
-        return d >= startOfWeek && d <= now;
 
-      });
+          return (
+            d >= startOfWeek &&
+            d <= now
+          );
+
+        }
+      );
 
 
-    document.getElementById("weekCount").textContent =
+    document.getElementById(
+      "weekCount"
+    ).textContent =
       weekRecords.length;
 
 
-    // 今月
     const year =
       now.getFullYear();
+
 
     const month =
       now.getMonth();
 
 
     const monthRecords =
-      records.filter(function(item) {
+      records.filter(
+        function(item) {
 
-        const d =
-          new Date(item.date + "T" + item.time);
-
-        return (
-          d.getFullYear() === year &&
-          d.getMonth() === month
-        );
-
-      });
+          const d =
+            new Date(
+              item.date +
+              "T" +
+              item.time
+            );
 
 
-    document.getElementById("monthCount").textContent =
+          return (
+
+            d.getFullYear() ===
+            year &&
+
+            d.getMonth() ===
+            month
+
+          );
+
+        }
+      );
+
+
+    document.getElementById(
+      "monthCount"
+    ).textContent =
       monthRecords.length;
 
 
-    // 前回からの間隔
+    /* 前回との差 */
+
     if (records.length >= 2) {
 
       const latest =
@@ -767,6 +1218,7 @@
           "T" +
           records[0].time
         );
+
 
       const previous =
         new Date(
@@ -782,13 +1234,16 @@
 
       const hours =
         Math.round(
-          difference / (1000 * 60 * 60)
+          difference /
+          (1000 * 60 * 60)
         );
 
 
       if (hours < 24) {
 
-        document.getElementById("interval").textContent =
+        document.getElementById(
+          "interval"
+        ).textContent =
           hours + "時間";
 
       }
@@ -796,16 +1251,27 @@
       else {
 
         const days =
-          Math.floor(hours / 24);
+          Math.floor(
+            hours / 24
+          );
+
 
         const remainingHours =
           hours % 24;
 
-        document.getElementById("interval").textContent =
-          days + "日" +
-          (remainingHours > 0
-            ? remainingHours + "時間"
-            : "");
+
+        document.getElementById(
+          "interval"
+        ).textContent =
+
+          days +
+          "日" +
+
+          (
+            remainingHours > 0
+              ? remainingHours + "時間"
+              : ""
+          );
 
       }
 
@@ -813,7 +1279,9 @@
 
     else {
 
-      document.getElementById("interval").textContent =
+      document.getElementById(
+        "interval"
+      ).textContent =
         "---";
 
     }
@@ -821,11 +1289,15 @@
   }
 
 
-  // カレンダー表示
+  /* カレンダー */
+
   function displayCalendar() {
 
     const calendar =
-      document.getElementById("calendar");
+      document.getElementById(
+        "calendar"
+      );
+
 
     calendar.innerHTML = "";
 
@@ -833,118 +1305,208 @@
     const year =
       calendarDate.getFullYear();
 
+
     const month =
       calendarDate.getMonth();
 
 
-    document.getElementById("calendarTitle").textContent =
-      year + "年 " + (month + 1) + "月";
+    document.getElementById(
+      "calendarTitle"
+    ).textContent =
+
+      year +
+      "年 " +
+      (month + 1) +
+      "月";
 
 
     const weekdays =
-      ["日", "月", "火", "水", "木", "金", "土"];
+      [
+        "日",
+        "月",
+        "火",
+        "水",
+        "木",
+        "金",
+        "土"
+      ];
 
 
-    weekdays.forEach(function(day) {
+    weekdays.forEach(
+      function(day) {
 
-      const element =
-        document.createElement("div");
+        const element =
+          document.createElement(
+            "div"
+          );
 
-      element.className = "weekday";
 
-      element.textContent = day;
+        element.className =
+          "weekday";
 
-      calendar.appendChild(element);
 
-    });
+        element.textContent =
+          day;
+
+
+        calendar.appendChild(
+          element
+        );
+
+      }
+    );
 
 
     const firstDay =
-      new Date(year, month, 1).getDay();
+      new Date(
+        year,
+        month,
+        1
+      ).getDay();
 
 
     const lastDate =
-      new Date(year, month + 1, 0).getDate();
+      new Date(
+        year,
+        month + 1,
+        0
+      ).getDate();
 
 
-    // 月初の空白
-    for (let i = 0; i < firstDay; i++) {
+    for (
+      let i = 0;
+      i < firstDay;
+      i++
+    ) {
 
       const blank =
-        document.createElement("div");
+        document.createElement(
+          "div"
+        );
 
-      calendar.appendChild(blank);
+
+      calendar.appendChild(
+        blank
+      );
 
     }
 
 
-    for (let day = 1; day <= lastDate; day++) {
+    for (
+      let day = 1;
+      day <= lastDate;
+      day++
+    ) {
+
 
       const element =
-        document.createElement("div");
-
-      element.className = "day";
-
-
-      const dateString =
-        year +
-        "-" +
-        String(month + 1).padStart(2, "0") +
-        "-" +
-        String(day).padStart(2, "0");
-
-
-      const dayRecords =
-        records.filter(function(item) {
-
-          return item.date === dateString;
-
-        });
-
-
-      element.innerHTML =
-        day +
-        (
-          dayRecords.length > 0
-            ? `<span class="poop">💩 ${dayRecords.length}</span>`
-            : ""
+        document.createElement(
+          "div"
         );
 
 
-      if (dateString === getToday()) {
+      element.className =
+        "day";
 
-        element.classList.add("today");
+
+      const dateString =
+
+        year +
+        "-" +
+        String(
+          month + 1
+        ).padStart(2, "0") +
+        "-" +
+        String(
+          day
+        ).padStart(2, "0");
+
+
+      const dayRecords =
+        records.filter(
+          function(item) {
+
+            return (
+              item.date ===
+              dateString
+            );
+
+          }
+        );
+
+
+      element.innerHTML =
+
+        day +
+
+        (
+
+          dayRecords.length > 0
+
+            ?
+
+            `<span class="poop">
+              💩 ${dayRecords.length}
+             </span>`
+
+            :
+
+            ""
+
+        );
+
+
+      if (
+        dateString ===
+        getToday()
+      ) {
+
+        element.classList.add(
+          "today"
+        );
 
       }
 
 
-      if (dayRecords.length > 0) {
+      if (
+        dayRecords.length > 0
+      ) {
 
-        element.classList.add("has-record");
+        element.classList.add(
+          "has-record"
+        );
 
       }
 
 
-      calendar.appendChild(element);
+      calendar.appendChild(
+        element
+      );
 
     }
 
   }
 
 
-  // カレンダーの月を変更
+  /* 月変更 */
+
   function changeMonth(amount) {
 
     calendarDate.setMonth(
-      calendarDate.getMonth() + amount
+
+      calendarDate.getMonth() +
+      amount
+
     );
+
 
     displayCalendar();
 
   }
 
 
-  // 最初に実行
+  /* 起動 */
+
   clearForm();
 
   displayRecords();
@@ -953,7 +1515,9 @@
 
   displayCalendar();
 
+
 </script>
+
 
 </body>
 </html>
