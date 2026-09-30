@@ -6,208 +6,273 @@
   <title>うんち記録</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+  * {
+    box-sizing: border-box;
+  }
 
+  body {
+    font-family: "Hiragino Kaku Gothic ProN",
+                 "Yu Gothic",
+                 sans-serif;
+    background: #f8eee3;
+    margin: 0;
+    padding: 15px;
+    color: #59463a;
+  }
+
+  .container {
+    max-width: 600px;
+    margin: auto;
+    background: #fffaf5;
+    padding: 20px;
+    border-radius: 24px;
+    box-shadow: 0 5px 20px rgba(120, 80, 50, 0.08);
+  }
+
+  h1 {
+    text-align: center;
+    color: #795548;
+    font-size: 28px;
+    margin: 5px 0 25px;
+  }
+
+  h2 {
+    font-size: 19px;
+    color: #795548;
+    margin-top: 30px;
+    margin-bottom: 12px;
+    padding: 10px 14px;
+    background: #f3dfcf;
+    border-radius: 12px;
+  }
+
+  label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #76584a;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #ead8ca;
+    border-radius: 12px;
+    background: #fff;
+    color: #59463a;
+    outline: none;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    border-color: #d9a7a7;
+  }
+
+  textarea {
+    height: 80px;
+    resize: vertical;
+  }
+
+  .main-button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 14px;
+    background: #b98270;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(120, 80, 50, 0.12);
+  }
+
+  .main-button:active {
+    transform: scale(0.98);
+  }
+
+  .cancel-button {
+    background: #b5a39a;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .stat-box {
+    padding: 14px 8px;
+    border-radius: 15px;
+    text-align: center;
+    background: #f8e5d8;
+    color: #76584a;
+  }
+
+  .stat-box:nth-child(2) {
+    background: #f5dfe5;
+  }
+
+  .stat-box:nth-child(3) {
+    background: #e5e8d7;
+  }
+
+  .stat-box:nth-child(4) {
+    background: #e3e1ee;
+  }
+
+  .stat-number {
+    font-size: 23px;
+    font-weight: bold;
+    margin: 3px 0;
+  }
+
+  .record {
+    margin-top: 14px;
+    padding: 16px;
+    background: #fff;
+    border: 2px solid #ead8ca;
+    border-radius: 16px;
+    box-shadow: 0 3px 10px rgba(120, 80, 50, 0.06);
+    line-height: 1.8;
+  }
+
+  .record strong {
+    color: #795548;
+    font-size: 16px;
+  }
+
+  .record-buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .record-buttons button {
+    flex: 1;
+    padding: 9px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .edit-button {
+    background: #d8b5a8;
+    color: white;
+  }
+
+  .delete-button {
+    background: #c4aaa0;
+    color: white;
+  }
+
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .calendar-header button {
+    border: none;
+    background: #b98270;
+    color: white;
+    border-radius: 10px;
+    padding: 8px 13px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .calendar-title {
+    font-weight: bold;
+    font-size: 18px;
+    color: #795548;
+  }
+
+  .calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+  }
+
+  .weekday {
+    text-align: center;
+    font-weight: bold;
+    padding: 5px 0;
+    font-size: 13px;
+    color: #8b6f61;
+  }
+
+  .day {
+    min-height: 58px;
+    border: 1px solid #eaded5;
+    background: #fff;
+    border-radius: 9px;
+    padding: 5px;
+    text-align: center;
+    font-size: 13px;
+  }
+
+  .day.has-record {
+    background: #f7e5d9;
+    border-color: #e4c4b5;
+  }
+
+  .poop {
+    font-size: 17px;
+    display: block;
+    margin-top: 3px;
+  }
+
+  .today {
+    border: 2px solid #c48c78;
+    background: #fff4ed;
+  }
+
+  @media (max-width: 500px) {
     body {
-      font-family: sans-serif;
-      background: #f7f1e8;
-      margin: 0;
-      padding: 15px;
+      padding: 7px;
     }
 
     .container {
-      max-width: 600px;
-      margin: auto;
-      background: white;
-      padding: 20px;
-      border-radius: 15px;
+      padding: 15px;
+      border-radius: 20px;
     }
 
     h1 {
-      text-align: center;
-      margin-top: 5px;
+      font-size: 25px;
     }
 
     h2 {
-      font-size: 20px;
-      margin-top: 30px;
-      border-bottom: 2px solid #eee;
-      padding-bottom: 8px;
+      font-size: 18px;
     }
 
-    label {
-      display: block;
-      margin-top: 15px;
-      margin-bottom: 6px;
-      font-weight: bold;
+    .day {
+      min-height: 52px;
+      font-size: 12px;
+    }
+
+    .poop {
+      font-size: 16px;
     }
 
     input,
     select,
     textarea {
-      width: 100%;
-      padding: 11px;
       font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-    }
-
-    textarea {
-      height: 80px;
-      resize: vertical;
     }
 
     .main-button {
-      width: 100%;
-      margin-top: 20px;
-      padding: 13px;
-      font-size: 18px;
-      border: none;
-      border-radius: 8px;
-      background: #8b6f47;
-      color: white;
-      cursor: pointer;
-    }
-
-    .cancel-button {
-      background: #999;
-    }
-
-    .summary {
-      background: #f7f1e8;
       padding: 15px;
-      border-radius: 10px;
-      margin-top: 15px;
-      line-height: 1.8;
     }
-
-    .record {
-      margin-top: 15px;
-      padding: 15px;
-      background: #f7f1e8;
-      border-radius: 10px;
-    }
-
-    .record-buttons {
-      display: flex;
-      gap: 8px;
-      margin-top: 10px;
-    }
-
-    .record-buttons button {
-      flex: 1;
-      padding: 8px;
-      border: none;
-      border-radius: 7px;
-      cursor: pointer;
-    }
-
-    .edit-button {
-      background: #777;
-      color: white;
-    }
-
-    .delete-button {
-      background: #aaa;
-      color: white;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .stat-box {
-      background: #f7f1e8;
-      padding: 12px;
-      border-radius: 10px;
-      text-align: center;
-    }
-
-    .stat-number {
-      font-size: 24px;
-      font-weight: bold;
-    }
-
-    .calendar-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-
-    .calendar-header button {
-      border: none;
-      background: #8b6f47;
-      color: white;
-      border-radius: 7px;
-      padding: 7px 12px;
-      cursor: pointer;
-    }
-
-    .calendar-title {
-      font-weight: bold;
-      font-size: 18px;
-    }
-
-    .calendar {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 4px;
-    }
-
-    .weekday {
-      text-align: center;
-      font-weight: bold;
-      padding: 5px 0;
-      font-size: 13px;
-    }
-
-    .day {
-      min-height: 55px;
-      border: 1px solid #eee;
-      border-radius: 6px;
-      padding: 4px;
-      text-align: center;
-      font-size: 13px;
-    }
-
-    .day.has-record {
-      background: #f7f1e8;
-    }
-
-    .poop {
-      font-size: 18px;
-      display: block;
-      margin-top: 3px;
-    }
-
-    .today {
-      border: 2px solid #8b6f47;
-    }
-
-    @media (max-width: 500px) {
-      body {
-        padding: 8px;
-      }
-
-      .container {
-        padding: 15px;
-        border-radius: 10px;
-      }
-
-      h1 {
-        font-size: 24px;
-      }
-
-      .day {
-        min-height: 50px;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 
 <body>
