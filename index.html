@@ -63,6 +63,12 @@
       background: #f7f1e8;
       border-radius: 10px;
     }
+
+    .delete-button {
+      background: #999;
+      margin-top: 10px;
+      font-size: 14px;
+    }
   </style>
 </head>
 
@@ -102,14 +108,14 @@
     // 保存されている記録を読み込む
     let records = JSON.parse(localStorage.getItem("unchiRecords")) || [];
 
-    // 画面に記録を表示する
+    // 記録を画面に表示
     function displayRecords() {
 
       const recordsArea = document.getElementById("records");
 
       recordsArea.innerHTML = "";
 
-      records.forEach(function(item) {
+      records.forEach(function(item, index) {
 
         const record = document.createElement("div");
 
@@ -119,6 +125,9 @@
           <strong>${item.date} ${item.time}</strong><br>
           状態：${item.condition}<br>
           メモ：${item.memo || "なし"}
+          <button class="delete-button" onclick="deleteRecord(${index})">
+            🗑️ 削除
+          </button>
         `;
 
         recordsArea.appendChild(record);
@@ -127,7 +136,7 @@
 
     }
 
-    // 記録する
+    // 新しい記録を追加
     function record() {
 
       const date = document.getElementById("date").value;
@@ -143,28 +152,48 @@
       }
 
       const newRecord = {
-
         date: date,
         time: time,
         condition: condition,
         memo: memo
-
       };
 
-      // 記録を追加
       records.push(newRecord);
 
-      // ブラウザに保存
-      localStorage.setItem("unchiRecords", JSON.stringify(records));
+      // 保存
+      localStorage.setItem(
+        "unchiRecords",
+        JSON.stringify(records)
+      );
 
-      // 画面を更新
       displayRecords();
 
       alert("記録しました！");
-
     }
 
-    // ページを開いたときに保存済みの記録を表示
+    // 記録を削除
+    function deleteRecord(index) {
+
+      const answer = confirm("この記録を削除しますか？");
+
+      if (!answer) {
+        return;
+      }
+
+      // 指定された記録を削除
+      records.splice(index, 1);
+
+      // 削除後のデータを保存
+      localStorage.setItem(
+        "unchiRecords",
+        JSON.stringify(records)
+      );
+
+      // 画面を更新
+      displayRecords();
+    }
+
+    // ページを開いたときに保存済み記録を表示
     displayRecords();
 
   </script>
