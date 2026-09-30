@@ -1,0 +1,15 @@
+{
+  "name": "ウンチ記録",
+  "short_name": "ウンチ記録",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#FFF8EE",
+  "theme_color": "#FFF8EE",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    }
+  ]
+}
