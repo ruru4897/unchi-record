@@ -56,6 +56,13 @@
       color: white;
       cursor: pointer;
     }
+
+    .record {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f7f1e8;
+      border-radius: 10px;
+    }
   </style>
 </head>
 
@@ -86,10 +93,33 @@
 
     <button onclick="record()">記録する</button>
 
+    <div id="records"></div>
+
   </div>
 
   <script>
     function record() {
+      const date = document.getElementById("date").value;
+      const time = document.getElementById("time").value;
+      const condition = document.getElementById("condition").value;
+      const memo = document.getElementById("memo").value;
+
+      if (!date || !time || !condition) {
+        alert("日にち・時間・状態を入力してね");
+        return;
+      }
+
+      const record = document.createElement("div");
+      record.className = "record";
+
+      record.innerHTML = `
+        <strong>${date} ${time}</strong><br>
+        状態：${condition}<br>
+        メモ：${memo || "なし"}
+      `;
+
+      document.getElementById("records").appendChild(record);
+
       alert("記録しました！");
     }
   </script>
